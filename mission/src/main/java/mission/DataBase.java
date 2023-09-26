@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class DataBase {
 	
 	public void dbInsert() {
-		String filePath = "/Users/gwonjiyeong/dev/git/repository/mission1/src/main/resources/wifi.db";
+		String filePath = "/Users/gwonjiyeong/dev/git/zerobase-bootcamp/mission/wifi.db";
 		
 		Connection connection = null;
         PreparedStatement preparedStatement = null;
