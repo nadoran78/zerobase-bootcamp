@@ -10,7 +10,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import lombok.Getter;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -19,15 +18,9 @@ import okhttp3.Response;
 
 public class ApiWifi {
 	 
-	
-
 	private int totalCount;
 	private String json;
 	private Response response;
-	
-	public int getTotalCount() {
-		return totalCount;
-	}
 	
 	public ApiWifi() {
 		setTotalCount();
@@ -41,6 +34,16 @@ public class ApiWifi {
 			start += maxRequest;
 		}
 		response.close();
+		
+		//읽어온 데이터 중 위도 및 경도가 0인 데이터 삭
+		DataBase db = new DataBase();
+		totalCount -= db.dbDeleteZero();
+		
+		
+	}
+	
+	public int getTotalCount() {
+		return totalCount;
 	}
 	
 	public boolean request(int start, int end, ConnectionPool conn) {
